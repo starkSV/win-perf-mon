@@ -1,0 +1,62 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Cross-platform tests (Storage + Shared — no Windows APIs)
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore src/WinPerfMon.Tests/WinPerfMon.Tests.csproj
+
+      - name: Build
+        run: dotnet build src/WinPerfMon.Tests/WinPerfMon.Tests.csproj --no-restore -c Release
+
+      - name: Test
+        run: dotnet test src/WinPerfMon.Tests/WinPerfMon.Tests.csproj --no-build -c Release --logger "console;verbosity=normal"
+
+  # Full solution build — requires Windows for WinUI 3 + LHM
+  build-windows:
+    name: Full Build (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore NuGet
+        run: dotnet restore WinPerfMon.sln
+
+      - name: Build Shared
+        run: dotnet build src/WinPerfMon.Shared/WinPerfMon.Shared.csproj -c Release --no-restore
+
+      - name: Build Storage
+        run: dotnet build src/WinPerfMon.Storage/WinPerfMon.Storage.csproj -c Release --no-restore
+
+      - name: Build Collector
+        run: dotnet build src/WinPerfMon.Collector/WinPerfMon.Collector.csproj -c Release --no-restore -p:Platform=x64
+
+      - name: Build App
+        run: dotnet build src/WinPerfMon.App/WinPerfMon.App.csproj -c Release --no-restore -p:Platform=x64
+
+      - name: Run Tests
+        run: dotnet test src/WinPerfMon.Tests/WinPerfMon.Tests.csproj -c Release --no-restore --logger "console;verbosity=normal"

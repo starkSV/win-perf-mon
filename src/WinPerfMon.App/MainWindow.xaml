@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="WinPerfMon.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pages="using:WinPerfMon.App.Pages"
+    Title="WinPerfMon">
+
+    <Grid>
+        <NavigationView
+            x:Name="NavView"
+            PaneDisplayMode="Left"
+            IsSettingsVisible="True"
+            SelectionChanged="NavView_SelectionChanged">
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem Tag="processes" Icon="AllApps"  Content="Processes"/>
+                <NavigationViewItem Tag="cpu"       Icon="SpeedHigh" Content="CPU"/>
+                <NavigationViewItem Tag="gpu"       Icon="Video"     Content="GPU"/>
+                <NavigationViewItem Tag="network"   Icon="Globe"     Content="Network"/>
+                <NavigationViewItem Tag="storage"   Icon="Storage"   Content="Storage"/>
+            </NavigationView.MenuItems>
+
+            <NavigationView.Header>
+                <TextBlock x:Name="PageTitle" Style="{StaticResource TitleTextBlockStyle}" Margin="0,8,0,0"/>
+            </NavigationView.Header>
+
+            <Frame x:Name="ContentFrame"/>
+        </NavigationView>
+    </Grid>
+</Window>

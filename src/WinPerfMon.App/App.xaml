@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="WinPerfMon.App.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinPerfMon.App.Controls">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <controls:BytesPerSecConverter      x:Key="BytesConverter"/>
+            <controls:HealthColorConverter      x:Key="HealthColorConverter"/>
+            <controls:CoreIndexConverter        x:Key="CoreIndexConverter"/>
+            <controls:CpuPercentConverter       x:Key="CpuPercentConverter"/>
+            <controls:LoadColorConverter        x:Key="LoadColorConverter"/>
+            <controls:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

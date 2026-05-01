@@ -1,0 +1,34 @@
+## Build outputs
+bin/
+obj/
+*.user
+*.suo
+.vs/
+_ReSharper*/
+*.DotSettings.user
+
+## NuGet
+*.nupkg
+packages/
+!**/packages/repositories.config
+.nuget/
+
+## WinUI / MSIX
+AppPackages/
+BundleArtifacts/
+*.msix
+*.appx
+*.appxbundle
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Rider / JetBrains
+.idea/
+*.sln.iml
+
+## SQLite db (runtime artefact, not source)
+*.db
+*.db-shm
+*.db-wal
