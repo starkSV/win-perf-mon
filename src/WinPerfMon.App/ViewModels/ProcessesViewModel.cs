@@ -52,9 +52,9 @@ public sealed class ProcessesViewModel : BaseViewModel, IDisposable
     {
         IReadOnlyList<ProcessEntry> snapshot;
         try   { snapshot = _collector.Sample(); }
-        catch { return; }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[ProcessCollector] Sample() threw: {ex}"); return; }
 
-        _dispatcher.TryEnqueue(() =>
+        _dispatcher?.TryEnqueue(() =>
         {
             _lastSnapshot = snapshot;
             TotalProcesses = snapshot.Count;

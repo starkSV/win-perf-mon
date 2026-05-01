@@ -16,6 +16,7 @@ public sealed class MetricStore : IDisposable
     public MetricStore(string dbPath, TimeSpan? retention = null)
     {
         _retention = retention ?? TimeSpan.FromDays(7);
+        Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
         _connectionString = new SqliteConnectionStringBuilder
         {
             DataSource = dbPath,

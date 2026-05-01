@@ -14,11 +14,11 @@
             SelectionChanged="NavView_SelectionChanged">
 
             <NavigationView.MenuItems>
-                <NavigationViewItem Tag="processes" Icon="AllApps"  Content="Processes"/>
-                <NavigationViewItem Tag="cpu"       Icon="SpeedHigh" Content="CPU"/>
-                <NavigationViewItem Tag="gpu"       Icon="Video"     Content="GPU"/>
-                <NavigationViewItem Tag="network"   Icon="Globe"     Content="Network"/>
-                <NavigationViewItem Tag="storage"   Icon="Storage"   Content="Storage"/>
+                <NavigationViewItem Tag="processes" Icon="AllApps" Content="Processes"/>
+                <NavigationViewItem Tag="cpu"       Icon="Repair"   Content="CPU"/>
+                <NavigationViewItem Tag="gpu"       Icon="Video"    Content="GPU"/>
+                <NavigationViewItem Tag="network"   Icon="Globe"    Content="Network"/>
+                <NavigationViewItem Tag="storage"   Icon="Save"     Content="Storage"/>
             </NavigationView.MenuItems>
 
             <NavigationView.Header>

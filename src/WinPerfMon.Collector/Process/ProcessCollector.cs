@@ -78,7 +78,7 @@ public sealed class ProcessCollector
                 NetRecvBytesPerSec   = 0,
                 GpuPercent        = 0f,    // populated by DXGI/ETW later
                 Status            = ProcessStatus.Running,
-                StartTime         = raw.CreateTime,
+                StartTime         = raw.CreateTime > 0 ? DateTimeOffset.FromFileTime(raw.CreateTime) : DateTimeOffset.MinValue,
             });
         }
 

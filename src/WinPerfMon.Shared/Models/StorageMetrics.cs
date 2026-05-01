@@ -19,6 +19,8 @@ public record DiskStats
     public float QueueDepth { get; init; }
     public float ActiveTimePercent { get; init; }   // % busy
 
+    public string QueueDepthDisplay => $"{QueueDepth:F1}";
+
     public SmartHealth Health { get; init; }
     public required SmartAttribute[] SmartAttributes { get; init; }
 

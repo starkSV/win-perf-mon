@@ -69,8 +69,8 @@
                                         <TextBlock Text="{Binding Index, Converter={StaticResource CoreIndexConverter}}" Style="{StaticResource CaptionTextBlockStyle}"/>
                                         <ProgressBar Value="{Binding Load}" Maximum="100" Height="6"/>
                                         <Grid>
-                                            <TextBlock Text="{Binding Load, StringFormat='{}{0:F0}%'}" HorizontalAlignment="Left" Style="{StaticResource CaptionTextBlockStyle}"/>
-                                            <TextBlock Text="{Binding FrequencyMhz, StringFormat='{}{0:F0} MHz'}" HorizontalAlignment="Right" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                            <TextBlock Text="{Binding LoadDisplay}" HorizontalAlignment="Left" Style="{StaticResource CaptionTextBlockStyle}"/>
+                                            <TextBlock Text="{Binding FreqDisplay}" HorizontalAlignment="Right" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                                         </Grid>
                                     </StackPanel>
                                 </Border>

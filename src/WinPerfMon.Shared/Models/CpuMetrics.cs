@@ -22,4 +22,7 @@ public record CoreMetrics
     public float Load { get; init; }                // percent
     public float FrequencyMhz { get; init; }
     public float TemperatureCelsius { get; init; }
+
+    public string LoadDisplay => $"{Load:F0}%";
+    public string FreqDisplay  => $"{FrequencyMhz:F0} MHz";
 }

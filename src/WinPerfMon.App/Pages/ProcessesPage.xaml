@@ -141,25 +141,24 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+            <ListView.Resources>
+                <MenuFlyout x:Name="ProcessContextMenu" x:Key="ProcessContextMenu">
+                    <MenuFlyoutItem x:Name="MenuEndTask"   Text="End task"          Click="MenuEndTask_Click"/>
+                    <MenuFlyoutItem x:Name="MenuOpenPath"  Text="Open file location" Click="MenuOpenPath_Click"/>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutSubItem Text="Set priority">
+                        <MenuFlyoutItem Tag="Realtime"    Text="Real time"     Click="MenuPriority_Click"/>
+                        <MenuFlyoutItem Tag="High"        Text="High"          Click="MenuPriority_Click"/>
+                        <MenuFlyoutItem Tag="AboveNormal" Text="Above normal"  Click="MenuPriority_Click"/>
+                        <MenuFlyoutItem Tag="Normal"      Text="Normal"        Click="MenuPriority_Click"/>
+                        <MenuFlyoutItem Tag="BelowNormal" Text="Below normal"  Click="MenuPriority_Click"/>
+                        <MenuFlyoutItem Tag="Idle"        Text="Low"           Click="MenuPriority_Click"/>
+                    </MenuFlyoutSubItem>
+                    <MenuFlyoutItem x:Name="MenuAffinity" Text="Set affinity…"  Click="MenuAffinity_Click"/>
+                </MenuFlyout>
+            </ListView.Resources>
 
-        <!-- ── Context menu (attached to ProcessList) ─────────────────── -->
-        <ListView.Resources>
-            <MenuFlyout x:Name="ProcessContextMenu" x:Key="ProcessContextMenu">
-                <MenuFlyoutItem x:Name="MenuEndTask"   Text="End task"          Click="MenuEndTask_Click"/>
-                <MenuFlyoutItem x:Name="MenuOpenPath"  Text="Open file location" Click="MenuOpenPath_Click"/>
-                <MenuFlyoutSeparator/>
-                <MenuFlyoutSubItem Text="Set priority">
-                    <MenuFlyoutItem Tag="Realtime"    Text="Real time"     Click="MenuPriority_Click"/>
-                    <MenuFlyoutItem Tag="High"        Text="High"          Click="MenuPriority_Click"/>
-                    <MenuFlyoutItem Tag="AboveNormal" Text="Above normal"  Click="MenuPriority_Click"/>
-                    <MenuFlyoutItem Tag="Normal"      Text="Normal"        Click="MenuPriority_Click"/>
-                    <MenuFlyoutItem Tag="BelowNormal" Text="Below normal"  Click="MenuPriority_Click"/>
-                    <MenuFlyoutItem Tag="Idle"        Text="Low"           Click="MenuPriority_Click"/>
-                </MenuFlyoutSubItem>
-                <MenuFlyoutItem x:Name="MenuAffinity" Text="Set affinity…"  Click="MenuAffinity_Click"/>
-            </MenuFlyout>
-        </ListView.Resources>
+        </ListView>
 
         <!-- ── Status bar ─────────────────────────────────────────────── -->
         <Border Grid.Row="3"

@@ -109,7 +109,7 @@ public sealed class StorageSensor : IDisposable
 
     private static SmartAttribute[] GetSmartAttributes(IHardware hw)
         => [.. hw.Sensors
-            .Where(s => s.SensorType == SensorType.RawValue)
+            .Where(s => s.SensorType == SensorType.SmallData)
             .Select(s => new SmartAttribute
             {
                 Id = 0, // LHM doesn't expose raw SMART IDs directly in this path
@@ -129,7 +129,7 @@ public sealed class StorageSensor : IDisposable
             DataUnitsWritten = (long)(GetSensor(hw, SensorType.Data, "Total Bytes Written") ?? 0),
             DataUnitsRead = 0,
             MediaErrors = 0,
-            PowerOnHours = (long)(GetSensor(hw, SensorType.RawValue, "Power On Hours") ?? 0),
+            PowerOnHours = (long)(GetSensor(hw, SensorType.TimeSpan, "Power On Hours") ?? 0),
         };
     }
 
