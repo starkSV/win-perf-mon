@@ -109,6 +109,7 @@
 
                         <TextBlock Grid.Column="2" Text="{x:Bind Pid}"
                             VerticalAlignment="Center"
+                            Margin="8,0,0,0"
                             Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                             Style="{StaticResource CaptionTextBlockStyle}"/>
 

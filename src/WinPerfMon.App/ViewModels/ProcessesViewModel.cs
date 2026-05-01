@@ -74,21 +74,21 @@ public sealed class ProcessesViewModel : BaseViewModel, IDisposable
 
         var sorted = (_sortColumn, _sortAscending) switch
         {
-            (ProcessSortColumn.Name,    true)  => filtered.OrderBy(p => p.Name),
-            (ProcessSortColumn.Name,    false) => filtered.OrderByDescending(p => p.Name),
+            (ProcessSortColumn.Name,    true)  => filtered.OrderBy(p => p.Name).ThenBy(p => p.Pid),
+            (ProcessSortColumn.Name,    false) => filtered.OrderByDescending(p => p.Name).ThenBy(p => p.Pid),
             (ProcessSortColumn.Pid,     true)  => filtered.OrderBy(p => p.Pid),
             (ProcessSortColumn.Pid,     false) => filtered.OrderByDescending(p => p.Pid),
-            (ProcessSortColumn.Cpu,     true)  => filtered.OrderBy(p => p.CpuPercent),
-            (ProcessSortColumn.Cpu,     false) => filtered.OrderByDescending(p => p.CpuPercent),
-            (ProcessSortColumn.Memory,  true)  => filtered.OrderBy(p => p.WorkingSetBytes),
-            (ProcessSortColumn.Memory,  false) => filtered.OrderByDescending(p => p.WorkingSetBytes),
-            (ProcessSortColumn.Disk,    true)  => filtered.OrderBy(p => p.DiskReadBytesPerSec + p.DiskWriteBytesPerSec),
-            (ProcessSortColumn.Disk,    false) => filtered.OrderByDescending(p => p.DiskReadBytesPerSec + p.DiskWriteBytesPerSec),
-            (ProcessSortColumn.Network, true)  => filtered.OrderBy(p => p.NetSendBytesPerSec + p.NetRecvBytesPerSec),
-            (ProcessSortColumn.Network, false) => filtered.OrderByDescending(p => p.NetSendBytesPerSec + p.NetRecvBytesPerSec),
-            (ProcessSortColumn.Gpu,     true)  => filtered.OrderBy(p => p.GpuPercent),
-            (ProcessSortColumn.Gpu,     false) => filtered.OrderByDescending(p => p.GpuPercent),
-            _ => filtered.OrderByDescending(p => p.CpuPercent),
+            (ProcessSortColumn.Cpu,     true)  => filtered.OrderBy(p => p.CpuPercent).ThenBy(p => p.Name),
+            (ProcessSortColumn.Cpu,     false) => filtered.OrderByDescending(p => p.CpuPercent).ThenBy(p => p.Name),
+            (ProcessSortColumn.Memory,  true)  => filtered.OrderBy(p => p.WorkingSetBytes).ThenBy(p => p.Name),
+            (ProcessSortColumn.Memory,  false) => filtered.OrderByDescending(p => p.WorkingSetBytes).ThenBy(p => p.Name),
+            (ProcessSortColumn.Disk,    true)  => filtered.OrderBy(p => p.DiskReadBytesPerSec + p.DiskWriteBytesPerSec).ThenBy(p => p.Name),
+            (ProcessSortColumn.Disk,    false) => filtered.OrderByDescending(p => p.DiskReadBytesPerSec + p.DiskWriteBytesPerSec).ThenBy(p => p.Name),
+            (ProcessSortColumn.Network, true)  => filtered.OrderBy(p => p.NetSendBytesPerSec + p.NetRecvBytesPerSec).ThenBy(p => p.Name),
+            (ProcessSortColumn.Network, false) => filtered.OrderByDescending(p => p.NetSendBytesPerSec + p.NetRecvBytesPerSec).ThenBy(p => p.Name),
+            (ProcessSortColumn.Gpu,     true)  => filtered.OrderBy(p => p.GpuPercent).ThenBy(p => p.Name),
+            (ProcessSortColumn.Gpu,     false) => filtered.OrderByDescending(p => p.GpuPercent).ThenBy(p => p.Name),
+            _ => filtered.OrderByDescending(p => p.CpuPercent).ThenBy(p => p.Name),
         };
 
         // Diff-update: avoid full clear/re-add to reduce flicker
